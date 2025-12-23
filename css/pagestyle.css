@@ -245,11 +245,7 @@ img.title {display:block; width:80%; margin:auto;}
             box-sizing: border-box;
             padding: 20px;
         }
-
-        .carousel-item:hover {
-            background-color: #fafafa;
-        }
-
+        
         /* --- 內容樣式設定 --- */
         .text-line-1 {
             font-size:16px;
