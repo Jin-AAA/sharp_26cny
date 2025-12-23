@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漢堡選單範例</title>
+    <style>
+        /* --- 基礎設定 & 平滑捲動 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth; /* 關鍵：讓點擊錨點後頁面平滑滑動 */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding-top: 70px; /* 為了避免內容被固定的 Header 擋住 */
+        }
+
+        /* --- Header 區域 (固定在頂部) --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 1000; /* 確保在最上層 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* --- Logo 樣式 --- */
+        .logo img {
+            height: 40px; /* Logo 高度 */
+            width: auto;
+            display: block;
+        }
+        /* 若沒有圖片，用文字代替的樣式 */
+        .logo-text {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        /* --- 漢堡選單按鈕 (三條線) --- */
+        .hamburger {
+            display: block;
+            cursor: pointer;
+            width: 30px;
+            height: 25px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            position: absolute;
+            transition: all 0.3s ease-in-out; /* 動畫過渡效果 */
+            border-radius: 2px;
+        }
+
+        /* 三條線的初始位置 */
+        .hamburger span:nth-child(1) { top: 0; }
+        .hamburger span:nth-child(2) { top: 11px; }
+        .hamburger span:nth-child(3) { top: 22px; }
+
+        /* --- 當選單打開時 (.active) 的漢堡變形動畫 --- */
+        .hamburger.active span:nth-child(1) {
+            top: 11px;
+            transform: rotate(45deg); /* 第一條線旋轉 */
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0; /* 中間那條線消失 */
+        }
+
+        .hamburger.active span:nth-child(3) {
+            top: 11px;
+            transform: rotate(-45deg); /* 第三條線反向旋轉 */
+        }
+
+        /* --- 下拉選單列表 --- */
+        .nav-menu {
+            position: fixed;
+            top: 60px; /* 接在 Navbar 下方 */
+            left: 0;
+            width: 100%;
+            background-color: #444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            list-style: none;
+            max-height: 0; /* 預設高度為 0 (隱藏) */
+            overflow: hidden;
+            transition: max-height 0.4s ease-out; /* 下拉動畫 */
+        }
+
+        /* 當選單打開時 */
+        .nav-menu.active {
+            max-height: 300px; /* 設定一個足夠展開內容的高度 */
+        }
+
+        .nav-menu li {
+            width: 100%;
+            text-align: center;
+            border-bottom: 1px solid #555;
+        }
+
+        .nav-menu li a {
+            display: block;
+            padding: 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .nav-menu li a:hover {
+            background-color: #555;
+        }
+
+        /* --- 測試用的區塊內容 --- */
+        section {
+            height: 100vh; /* 每個區塊佔滿一個視窗高度 */
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            border-bottom: 1px solid #ccc;
+        }
+        #section1 { background-color: #f9f9f9; }
+        #section2 { background-color: #e9e9e9; }
+        #section3 { background-color: #d9d9d9; }
+        #section4 { background-color: #c9c9c9; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="#" class="logo">
+            <span class="logo-text">MY LOGO</span>
+        </a>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <ul class="nav-menu">
+        <li><a href="#section1" class="nav-link">前往區塊 1</a></li>
+        <li><a href="#section2" class="nav-link">前往區塊 2</a></li>
+        <li><a href="#section3" class="nav-link">前往區塊 3</a></li>
+        <li><a href="#section4" class="nav-link">前往區塊 4</a></li>
+    </ul>
+
+    <section id="section1">這裡是區塊 1</section>
+    <section id="section2">這裡是區塊 2</section>
+    <section id="section3">這裡是區塊 3</section>
+    <section id="section4">這裡是區塊 4</section>
+
+    <script>
+        // 選取 DOM 元素
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        // 1. 漢堡選單點擊事件：切換開關
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        // 2. 連結點擊事件：點擊後自動關閉選單
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            });
+        });
+    </script>
+
+</body>
+</html>

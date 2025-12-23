@@ -1,0 +1,217 @@
+@charset "UTF-8";
+/* CSS Document */
+
+@font-face {
+  font-family: 'Swei';
+  src: url(../css/font/SweiGothicCJKtc-Medium.woff2) format("woff2");
+}
+
+* {margin:0px; padding:0px;}
+
+body, html {font-family:'Swei','微軟正黑體','Microsoft Jhenghei',sans-serif; font-size:16px; line-height:24px; font-weight:300; position:relative; overflow-x:hidden; background:#cd3930; scroll-behavior: smooth;}
+a, input, button {text-decoration:none; outline:none !important;}
+a:hover, a:focus, a:active {text-decoration:none; cursor:pointer !important; outline:none !important;}
+ul, li {list-style:none;}
+
+.cleardiv {display:block; clear:both;}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing:border-box;
+  z-index: 1000; /* 確保在最上層 */
+}
+.logo img {
+  height: 34px; /* Logo 高度 */
+  width: auto;
+  display: block;
+}
+.hamburger {
+  display: block;
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  position: relative;
+  z-index: 1001;
+}
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #c62800;
+  position: absolute;
+  transition: all 0.3s ease-in-out; /* 動畫過渡效果 */
+  border-radius: 2px;
+}
+/* 三條線的初始位置 */
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 11px; }
+.hamburger span:nth-child(3) { top: 22px; }
+
+/* --- 當選單打開時 (.active) 的漢堡變形動畫 --- */
+.hamburger.active span:nth-child(1) {
+  top: 11px;
+  transform: rotate(45deg); /* 第一條線旋轉 */
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0; /* 中間那條線消失 */
+}
+
+.hamburger.active span:nth-child(3) {
+  top: 11px;
+  transform: rotate(-45deg); /* 第三條線反向旋轉 */
+}
+
+/* --- 下拉選單列表 --- */
+.nav-menu {
+  position: fixed;
+  top: 40px; /* 接在 Navbar 下方 */
+  left: 0;
+  width: 100%;
+  z-index:1000;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  max-height: 0; /* 預設高度為 0 (隱藏) */
+  overflow: hidden;
+  transition: max-height 0.4s ease-out; /* 下拉動畫 */
+}
+
+/* 當選單打開時 */
+.nav-menu.active {
+  max-height: 350px; /* 設定一個足夠展開內容的高度 */
+}
+
+.nav-menu li {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.nav-menu li a {
+  display: block;
+  font-size:18px;
+  padding: 20px;
+  color: black;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.nav-menu li a:hover {
+  background-color: #555;
+}
+
+#layout {width:100%; max-width:800px; position:relative; margin:auto; background:url(../images/bg.jpg) center repeat;}
+
+section {position:relative; padding:20px 0px 5px 0px;}
+
+#kv {position:relative; width:100%; padding-top:0px; padding-bottom:0px;}
+#kv img.main {width:100%; height:auto;}
+#kv img.slogan {width:55%; position:absolute; top:22%; left:50%; transform:translateX(-50%);}
+
+img.title {display:block; width:80%; margin:auto;}
+
+#sec1 img.title {margin-bottom:-40px;}
+#sec1 img.book {display:block; width:100%;}
+#sec1 img.food_1 {position: absolute; width: 45%; top: 26%; left: 9%;}
+#sec1 img.food_2 {position: absolute; width: 42%; top: 30%; right: 12%;}
+#sec1 img.food_3 {position: absolute; width: 40%; top: 43%; left: 8%;}
+#sec1 img.food_4 {position: absolute; width: 28%; top: 41%; right: 7%;}
+#sec1 img.food_5 {position: absolute; width: 43%; left: 7%; bottom: 18%;}
+#sec1 img.food_6 {position: absolute; width: 36%; right: 15%; bottom: 15%;}
+
+#sec2 {position:relative; width:96%; margin:auto;}
+#sec2 .bag {position:relative; display:flex; justify-content: flex-end; align-items: center;}
+#sec2 .bag .lt {display:block; position:absolute; width:65%; left:5%;}
+#sec2 .bag .lt span {display: inline-block; height:30px; padding:5px 8px; border-top-left-radius:10px; border-top-right-radius:10px;}
+#sec2 .bag .lt .a {height:40px; border-bottom:2px solid #b2ca24; margin-bottom:5px;}
+#sec2 .bag .lt .a span {background:#b2ca24; margin-right:10px;}
+#sec2 .bag .lt .b {height:40px; border-bottom:2px solid #65c4d2; margin-bottom:5px;}
+#sec2 .bag .lt .b span {background:#65c4d2; margin-right:10px;}
+#sec2 .bag .lt .c {height:40px; border-bottom:2px solid #fabe00; margin-bottom:5px;}
+#sec2 .bag .lt .c span {background:#fabe00; margin-right:10px;}
+#sec2 .bag .lt img.date {height:30px; width:auto;}
+#sec2 .bag .lt img.text {height:26px; width:auto;}
+#sec2 .bag .lt p {font-size:15px; box-sizing:border-box; padding-right:50px; color:white;}
+#sec2 .bag .lt p:nth-child(2) {padding-right:65px;}
+#sec2 .bag .rt {width:53%; z-index:1;}
+
+#sec3 {padding-bottom:20px; position:relative;}
+
+#sec3 .refr {width:100%; height:auto;}
+
+#sec3 .refr .tag_1 {
+    position: absolute;
+    top: 21%;
+    left: 33%;
+    width: 38%;
+}
+#sec3 .refr .tag_2 {
+    position: absolute;
+    top: 42%;
+    left: 33%;
+    width: 38%;
+}
+#sec3 .refr .tag_3 {
+    position: absolute;
+    top: 56%;
+    left: 33%;
+    width: 38%;
+}
+#sec3 .refr .tag_4 {
+    position: absolute;
+    top: 76%;
+    left: 33%;
+    width: 38%;
+}
+
+#sec3 .info {box-sizing:border-box; padding:3px;}
+#sec3 .info p {font-size:15px; line-height:18px;}
+#sec3 .info img {width:145px; margin-top:-20px; margin-left:-5px; margin-bottom:-10px;}
+
+#sec3 .refr .info_1 {
+    position: absolute;
+    width: 30%;
+    top: 11%;
+    left: 5px;
+    background: url(../images/sec_3_11.png) 100% 100% no-repeat;
+}
+#sec3 .refr .info_2 {
+    position: absolute;
+    width: 33%;
+    top: 27%;
+    left: 5px;
+    background: url(../images/sec_3_12.png) 100% 100% no-repeat;
+}
+#sec3 .refr .info_3 {
+    position: absolute;
+    width: 33%;
+    top: 46%;
+    left: 5px;
+    background: url(../images/sec_3_13.png) 100% 100% no-repeat;
+}
+#sec3 .refr .info_4 {
+    position: absolute;
+    width: 34%;
+    top: 62%;
+    left: 5px;
+    background: url(../images/sec_3_14.png) 100% 100% no-repeat;
+}
+#sec3 .refr .info_5 {
+    position: absolute;
+    width: 33%;
+    top: 81%;
+    left: 5px;
+    background: url(../images/sec_3_15.png) 100% 100% no-repeat;
+}

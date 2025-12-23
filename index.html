@@ -35,11 +35,102 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha512-qWVvreMuH9i0DrugcOtifxdtZVBBL0X75r9YweXsdCHtXUidlctw7NXg5KVP3ITPtqZ2S575A0wFkvgS2anqSA==" crossorigin="anonymous"></script><!-- IE9以前支援@media -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha512-UDJtJXfzfsiPPgnI5S1000FPLBHMhvzAMX15I+qG2E2OAzC9P1JzUwJOfnypXiOH7MRPaqzhPbBGDNNj7zBfoA==" crossorigin="anonymous"></script><!-- IE9以前支援HTML5 -->
 
+<link rel="stylesheet" href="css/pagestyle.css" type="text/css" />
+
 </head>
  
 <body>
-Sharp冰箱 年節囤貨指南
+<header class="navbar">
+    <a class="logo" href="javascript:;"><img src="images/sharp_logo.svg"></a>
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</header>
+<ul class="nav-menu">
+    <li><a href="#sec1" class="nav-link">必備囤貨清單</a></li>
+    <li><a href="#sec2" class="nav-link">囤貨時程表</a></li>
+    <li><a href="#sec3" class="nav-link">食材保存小技巧</a></li>
+    <li><a href="javascript:;" class="nav-link">立即購買</a></li>
+    <li><a href="javascript:;" class="nav-link">體驗據點</a></li>
+</ul>
+<div id="layout">
+    <section id="kv">
+        <img class="slogan" src="images/sec_1_2.png">
+        <img class="main" src="images/sec_1_1.jpg">
+    </section>
+    <section id="sec1">
+        <img class="title" src="images/title_1.png">
+        <img class="food_1" src="images/sec_2_2.png">
+        <img class="food_2" src="images/sec_2_3.png">
+        <img class="food_3" src="images/sec_2_4.png">
+        <img class="food_4" src="images/sec_2_5.png">
+        <img class="food_5" src="images/sec_2_6.png">
+        <img class="food_6" src="images/sec_2_7.png">
+        <img class="book" src="images/sec_2_1.png">
+    </section>
+    <section id="sec2">
+        <img class="title" src="images/title_2.png">
+        <div class="bag">
+            <div class="lt">
+                <div class="a"><span><img class="date" src="images/sec_2_8.png"></span><img class="text" src="images/sec_2_9.png"></div>
+                <p><strong>Tips:</strong> 提前清冰箱，把過期、佔空間的東西丟掉，替年菜空出位置。</p>
+            </div>
+            <img class="rt" src="images/sec_2_14.png">
+        </div>
+        <div class="bag">
+            <div class="lt">
+                <div class="b"><span><img class="date" src="images/sec_2_10.png"></span><img class="text" src="images/sec_2_11.png"></div>
+                <p><strong>Tips:</strong> 以「耐放型」生鮮為主，分裝更節省空間。</p>
+            </div>
+            <img class="rt" src="images/sec_2_15.png">
+        </div>
+        <div class="bag">
+            <div class="lt">
+                <div class="c"><span><img class="date" src="images/sec_2_12.png"></span><img class="text" src="images/sec_2_13.png"></div>
+                <p><strong>Tips:</strong> 當天或隔天會上桌的食材，買完直接冷藏，不要冷凍，口感最好。</p>
+            </div>
+            <img class="rt" src="images/sec_2_16.png">
+        </div>
+    </section>
+    <section id="sec3">
+        <img class="title" src="images/title_3.png">
+        <div class="refr">
+            <img class="tag_1" src="images/sec_3_2.png">
+            <img class="tag_2" src="images/sec_3_3.png">
+            <img class="tag_3" src="images/sec_3_4.png">
+            <img class="tag_4" src="images/sec_3_5.png">
+            <div class="info_1 info">
+                <img src="images/sec_3_6.png">
+                <p>不怕冰箱有異味，PCI自動除菌離子，除菌、除臭，同時保鮮</p>
+            </div>
+            <div class="info_2 info">
+                <img src="images/sec_3_7.png">
+                <p>少量分裝，防止食材水分流失，急凍更鎖鮮</p>
+            </div>
+            <div class="info_3 info">
+                <img src="images/sec_3_8.png">
+                <p>肉品海鮮不需解凍、保留最佳鮮度</p>
+            </div>
+            <div class="info_4 info">
+                <img src="images/sec_3_9.png">
+                <p>生食下層、熟食上層，避免交叉汙染</p>
+            </div>
+            <div class="info_5 info">
+                <img src="images/sec_3_10.png">
+                <p>保存蔬菜若用塑膠袋或夾鏈袋密封，容易使蔬菜濕氣太重，加速腐爛</p>
+            </div>
+            <img class="refr" src="images/sec_3_1.png">
+        </div>
+    </section>
+</div>
 </body>
  
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+
+<script src="js/pagestyle.js"></script>
 
