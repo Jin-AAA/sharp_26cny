@@ -112,7 +112,7 @@ ul, li {list-style:none;}
   background-color: #555;
 }
 
-#layout {width:100%; max-width:800px; position:relative; margin:auto; background:url(../images/bg.jpg) center repeat;}
+#layout {width:100%; max-width:800px; position:relative; margin:auto; background:url(../images/bg.jpg) center repeat; padding-bottom:50px;}
 
 section {position:relative; padding:20px 0px 5px 0px;}
 
@@ -176,8 +176,8 @@ img.title {display:block; width:80%; margin:auto;}
     width: 38%;
 }
 
-#sec3 .info {box-sizing:border-box; padding:3px;}
-#sec3 .info p {font-size:15px; line-height:18px;}
+#sec3 .info {box-sizing:border-box; padding:3px 0px 5px 5px;}
+#sec3 .info p {font-size:15px; line-height:18px; padding-left:3px;}
 #sec3 .info img {width:145px; margin-top:-20px; margin-left:-5px; margin-bottom:-10px;}
 
 #sec3 .refr .info_1 {
@@ -215,3 +215,96 @@ img.title {display:block; width:80%; margin:auto;}
     left: 5px;
     background: url(../images/sec_3_15.png) 100% 100% no-repeat;
 }
+
+
+
+        /* --- 輪播容器 --- */
+        .carousel-container {
+            position: relative;
+            width:90%; /* 這裡設定輪播顯示的寬度 */
+            margin:auto;
+            overflow: hidden; /* 關鍵：隱藏超出的部分 */
+        }
+
+        /* --- 輪播軌道 (放置所有連結的長條) --- */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* 滑動動畫 */
+            height: 100%;
+        }
+
+        /* --- 單個連結區塊 --- */
+        .carousel-item {
+            min-width: 100%; /* 關鍵：讓每個區塊剛好佔滿容器寬度 */
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column; /* 垂直排列內容 */
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .carousel-item:hover {
+            background-color: #fafafa;
+        }
+
+        /* --- 內容樣式設定 --- */
+        .text-line-1 {
+            font-size:16px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .text-line-2 {
+            font-size:22px;;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .slide-image {
+            width: 30%;
+            height:auto;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .text-line-last {
+            font-size: 16px;
+            color: #c62800;
+            background:white;
+            font-weight: bold;
+            padding:5px 12px; border-radius:30px;
+        }
+
+        /* --- 左右切換按鈕 --- */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+
+.lastlnk {display:block; width:50%; margin:30px auto; background:white; color:#c62800; font-size:20px; padding:12px; border-radius:30px; font-weight:bold; text-align:center;}
