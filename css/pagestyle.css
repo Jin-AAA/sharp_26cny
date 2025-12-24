@@ -128,8 +128,8 @@ img.title {display:block; width:80%; margin:auto;}
 #sec1 img.food_2 {position: absolute; width: 42%; top: 30%; right: 12%;}
 #sec1 img.food_3 {position: absolute; width: 40%; top: 43%; left: 8%;}
 #sec1 img.food_4 {position: absolute; width: 28%; top: 41%; right: 7%;}
-#sec1 img.food_5 {position: absolute; width: 43%; left: 7%; bottom: 18%;}
-#sec1 img.food_6 {position: absolute; width: 36%; right: 15%; bottom: 15%;}
+#sec1 img.food_5 {position: absolute; width: 43%; left: 7%; bottom: 16%;}
+#sec1 img.food_6 {position: absolute; width: 36%; right: 15%; bottom: 13%;}
 
 #sec2 {position:relative; width:96%; margin:auto;}
 #sec2 .bag {position:relative; display:flex; justify-content: flex-end; align-items: center;}
@@ -185,35 +185,40 @@ img.title {display:block; width:80%; margin:auto;}
     width: 30%;
     top: 11%;
     left: 5px;
-    background: url(../images/sec_3_11.png) 100% 100% no-repeat;
+    background: url(../images/sec_3_11.png) no-repeat;
+    background-size: 100% 100%;
 }
 #sec3 .refr .info_2 {
     position: absolute;
     width: 33%;
     top: 27%;
     left: 5px;
-    background: url(../images/sec_3_12.png) 100% 100% no-repeat;
+    background: url(../images/sec_3_12.png) no-repeat;
+    background-size: 100% 100%;
 }
 #sec3 .refr .info_3 {
     position: absolute;
     width: 33%;
     top: 46%;
     left: 5px;
-    background: url(../images/sec_3_13.png) 100% 100% no-repeat;
+    background: url(../images/sec_3_13.png) no-repeat;
+    background-size: 100% 100%;
 }
 #sec3 .refr .info_4 {
     position: absolute;
     width: 34%;
     top: 62%;
     left: 5px;
-    background: url(../images/sec_3_14.png) 100% 100% no-repeat;
+    background: url(../images/sec_3_14.png) no-repeat;
+    background-size: 100% 100%;
 }
 #sec3 .refr .info_5 {
     position: absolute;
     width: 33%;
     top: 81%;
     left: 5px;
-    background: url(../images/sec_3_15.png) 100% 100% no-repeat;
+    background: url(../images/sec_3_15.png) no-repeat;
+    background-size: 100% 100%;
 }
 
 
@@ -245,7 +250,7 @@ img.title {display:block; width:80%; margin:auto;}
             box-sizing: border-box;
             padding: 20px;
         }
-        
+
         /* --- 內容樣式設定 --- */
         .text-line-1 {
             font-size:16px;
@@ -304,3 +309,14 @@ img.title {display:block; width:80%; margin:auto;}
 
 
 .lastlnk {display:block; width:50%; margin:30px auto; background:white; color:#c62800; font-size:20px; padding:12px; border-radius:30px; font-weight:bold; text-align:center;}
+
+
+
+@media (min-width:800px) {
+  #sec2 .bag .lt .a, #sec2 .bag .lt .b, #sec2 .bag .lt .c {height:50px;}
+  #sec2 .bag .lt span {height:40px;}
+  #sec2 .bag .lt img.text {height:36px;}
+  #sec2 .bag .lt p:nth-child(2) {padding-right:100px;}
+  #sec3 .info img {width:200px;}
+  #sec3 .info p {font-size:17px; line-height:24px; padding:10px;}
+}

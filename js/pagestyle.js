@@ -1,7 +1,217 @@
 $(document).ready( function() {
+
     gsap.from("img.slogan", { opacity: 0, scale:0.5, duration: 0.5 });
-    gsap.to("img.slogan", { rotation: 5, duration: 1, delay:2, yoyo:true, repeat:-1, repeatDelay:3 });
+    //gsap.to("img.slogan", { rotation: 5, duration: 0.6, scale:1.2, delay:2, yoyo:true, repeat:-1, repeatDelay:3 });
+    var tl_a = gsap.timeline({delay:2, yoyo:true, repeat:-1, repeatDelay:3});
+    tl_a.to("img.slogan", {rotation: 5, duration: 0.5, scale:1.2});
+    tl_a.to("img.slogan", {rotation: -1, duration: 0.3, scale:1.2});
+    tl_a.to("img.slogan", {rotation: 5, duration: 0.3, scale:1.2});
+    tl_a.to("img.slogan", {rotation: 0, duration: 1, scale:1});
+
+    // 1. 先把所有東西藏起來
+    gsap.set(".animate-item", { opacity: 0, scale:0.5 });
+    gsap.set(".bag1", { opacity: 0, y:10 });
+    gsap.set(".bag2", { opacity: 0, y:10 });
+    gsap.set(".bag3", { opacity: 0, y:10 });
+    gsap.set(".tag_1", { opacity: 0, y:10 });
+    gsap.set(".tag_2", { opacity: 0, y:10 });
+    gsap.set(".tag_3", { opacity: 0, y:10 });
+    gsap.set(".tag_4", { opacity: 0, y:10 });
+    gsap.set(".info_1", { opacity: 0, y:10 });
+    gsap.set(".info_2", { opacity: 0, y:10 });
+    gsap.set(".info_3", { opacity: 0, y:10 });
+    gsap.set(".info_4", { opacity: 0, y:10 });
+    gsap.set(".info_5", { opacity: 0, y:10 });
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to("#sec1 .animate-item", {
+    scrollTrigger: {
+        trigger: "#sec1",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    scale: 1,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".bag1", {
+    scrollTrigger: {
+        trigger: ".bag1",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".bag2", {
+    scrollTrigger: {
+        trigger: ".bag2",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".bag3", {
+    scrollTrigger: {
+        trigger: ".bag3",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".tag_1", {
+    scrollTrigger: {
+        trigger: ".tag_1",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".tag_2", {
+    scrollTrigger: {
+        trigger: ".tag_2",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".tag_3", {
+    scrollTrigger: {
+        trigger: ".tag_3",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".tag_4", {
+    scrollTrigger: {
+        trigger: ".tag_4",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".info_1", {
+    scrollTrigger: {
+        trigger: ".info_1",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".info_2", {
+    scrollTrigger: {
+        trigger: ".info_2",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".info_3", {
+    scrollTrigger: {
+        trigger: ".info_3",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".info_4", {
+    scrollTrigger: {
+        trigger: ".info_4",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+    gsap.to(".info_5", {
+    scrollTrigger: {
+        trigger: ".info_5",
+        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+        once: true,
+        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
+    },
+    opacity: 1,
+    y:0,                  // 確保這裡回到 0
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power2.out"
+    });
+
+
 });
+
+
+
 
     // 選取 DOM 元素
         const hamburger = document.querySelector(".hamburger");
