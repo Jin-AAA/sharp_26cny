@@ -25,186 +25,79 @@ $(document).ready( function() {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to("#sec1 .animate-item", {
+    //KV過場
+    // 建立一個時間軸
+    const tl = gsap.timeline({
     scrollTrigger: {
-        trigger: "#sec1",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    scale: 1,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
+        trigger: "#kv",
+        start: "top top",
+        end: "+=150%",
+        scrub: 1,
+        pin: true,
+        pinSpacing: true, // 必須保持開啟，否則動畫時第二區會蓋上來
+        onLeave: (self) => {
+            // 1. 取得當前滾動位置
+            const scrollPos = self.scroll();
+            
+            // 2. 徹底殺死觸發器，並傳入 true 要求還原所有 inline 樣式 (清除留白)
+            self.kill(true); 
+            
+            // 3. 確保白色層徹底消失
+            gsap.set("#kv .overlay", { autoAlpha: 0, display: "none" });
+
+            // 4. 關鍵修正：使用 requestAnimationFrame 確保 DOM 已經重新排列
+            requestAnimationFrame(() => {
+                // 強制刷新所有 ScrollTrigger 的位置計算
+                ScrollTrigger.refresh();
+                
+                // 將捲動軸精準定位在第一區的底部（也就是原本動畫結束的地方）
+                // 這樣就不會直接跳到第四區
+                window.scrollTo(0, endPos);
+            });
+        }
+    }
     });
 
-    gsap.to(".bag1", {
-    scrollTrigger: {
-        trigger: ".bag1",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
+    // 定義動畫流程
+    tl.fromTo("#kv .overlay", 
+        { autoAlpha: 0 }, 
+        { autoAlpha: 1, duration: 1 } // 第一步：淡入白色層
+    )
+    .to("#kv .overlay", { 
+        duration: 1 // 第二步：單純停留（這段時間畫面上文字不動）
+    })
+    .to("#kv .overlay", { 
+        autoAlpha: 0, 
+        duration: 1 // 第三步：淡出
     });
 
-    gsap.to(".bag2", {
-    scrollTrigger: {
-        trigger: ".bag2",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
+    // 物件淡入組合
+    const animateTargets = [
+    "#sec1 .animate-item", ".bag1", ".bag2", ".bag3", 
+    ".tag_1", ".tag_2", ".tag_3", ".tag_4",
+    ".info_1", ".info_2", ".info_3", ".info_4", ".info_5",
+    ".lne_1", ".lne_2", ".lne_3", ".lne_4"
+    ];
+
+    animateTargets.forEach(target => {
+    gsap.to(target, {
+        scrollTrigger: {
+        trigger: target,   // 以物件本身作為觸發點更精準
+        start: "top 70%",
         once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
+        markers: false,
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: "power2.out"
+    });
     });
 
-    gsap.to(".bag3", {
-    scrollTrigger: {
-        trigger: ".bag3",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
 
-    gsap.to(".tag_1", {
-    scrollTrigger: {
-        trigger: ".tag_1",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
-
-    gsap.to(".tag_2", {
-    scrollTrigger: {
-        trigger: ".tag_2",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
-
-    gsap.to(".tag_3", {
-    scrollTrigger: {
-        trigger: ".tag_3",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
-
-    gsap.to(".tag_4", {
-    scrollTrigger: {
-        trigger: ".tag_4",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
-
-    gsap.to(".info_1", {
-    scrollTrigger: {
-        trigger: ".info_1",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
-
-    gsap.to(".info_2", {
-    scrollTrigger: {
-        trigger: ".info_2",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
-
-    gsap.to(".info_3", {
-    scrollTrigger: {
-        trigger: ".info_3",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
-
-    gsap.to(".info_4", {
-    scrollTrigger: {
-        trigger: ".info_4",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-    });
-
-    gsap.to(".info_5", {
-    scrollTrigger: {
-        trigger: ".info_5",
-        start: "top 70%",    // 當 #sec1 的頂部到達螢幕下方 80% 位置時觸發
-        once: true,
-        markers: false,       // 【重要】開啟視覺輔助線，你會看到 start/end 標記
-    },
-    opacity: 1,
-    y:0,                  // 確保這裡回到 0
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
+    Fancybox.bind("[data-fancybox]", {
+        // Your custom options
     });
 
 

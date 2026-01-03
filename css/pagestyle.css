@@ -120,6 +120,19 @@ section {position:relative; padding:20px 0px 5px 0px;}
 #kv img.main {width:100%; height:auto;}
 #kv img.slogan {width:55%; position:absolute; top:22%; left:50%; transform:translateX(-50%);}
 
+#kv .overlay {
+  position: absolute;
+  inset: 0; /* 填滿 section-1 */
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden; /* 配合 autoAlpha */
+}
+#kv .overlay p {font-size:22px; line-height:34px; margin:5px auto; text-align:center;}
+
 img.title {display:block; width:80%; margin:auto;}
 
 #sec1 img.title {margin-bottom:-40px;}
@@ -221,6 +234,34 @@ img.title {display:block; width:80%; margin:auto;}
     background-size: 100% 100%;
 }
 
+#sec3 .lne_1 {
+    width: 25%;
+    position: absolute;
+    top: 28%;
+    left: 25%;
+}
+#sec3 .lne_2 {
+    width: 23%;
+    position: absolute;
+    top: 46%;
+    left: 29%;
+}
+#sec3 .lne_3 {
+    width: 25%;
+    position: absolute;
+    top: 60.5%;
+    left: 25%;
+}
+#sec3 .lne_4 {
+    width: 23%;
+    position: absolute;
+    top: 80%;
+    left: 26%;
+}
+
+.yt {position:relative; width:90%; margin:30px auto;}
+.yt img {width:100%; height:auto;}
+
 
 
         /* --- 輪播容器 --- */
@@ -314,9 +355,11 @@ img.title {display:block; width:80%; margin:auto;}
 
 @media (min-width:800px) {
   #sec2 .bag .lt .a, #sec2 .bag .lt .b, #sec2 .bag .lt .c {height:50px;}
+  #sec2 .bag .lt img.date {height:50px;}
   #sec2 .bag .lt span {height:40px;}
-  #sec2 .bag .lt img.text {height:36px;}
-  #sec2 .bag .lt p:nth-child(2) {padding-right:100px;}
+  #sec2 .bag .lt img.text {height:46px;}
+  #sec2 .bag .lt p {font-size:20px; line-height:30px;}
+  #sec2 .bag .lt p:nth-child(2) {padding-right:130px;}
   #sec3 .info img {width:200px;}
   #sec3 .info p {font-size:17px; line-height:24px; padding:10px;}
 }
