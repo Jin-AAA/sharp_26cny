@@ -17,6 +17,10 @@ $(document).ready( function() {
     gsap.set(".tag_2", { opacity: 0, y:10 });
     gsap.set(".tag_3", { opacity: 0, y:10 });
     gsap.set(".tag_4", { opacity: 0, y:10 });
+    gsap.set(".lne_1", { opacity: 0, y:10 });
+    gsap.set(".lne_2", { opacity: 0, y:10 });
+    gsap.set(".lne_3", { opacity: 0, y:10 });
+    gsap.set(".lne_4", { opacity: 0, y:10 });
     gsap.set(".info_1", { opacity: 0, y:10 });
     gsap.set(".info_2", { opacity: 0, y:10 });
     gsap.set(".info_3", { opacity: 0, y:10 });
@@ -28,34 +32,33 @@ $(document).ready( function() {
     //KV過場
     // 建立一個時間軸
     const tl = gsap.timeline({
-    scrollTrigger: {
-        trigger: "#kv",
-        start: "top top",
-        end: "+=150%",
-        scrub: 1,
-        pin: true,
-        pinSpacing: true, // 必須保持開啟，否則動畫時第二區會蓋上來
-        onLeave: (self) => {
-            // 1. 取得當前滾動位置
-            const scrollPos = self.scroll();
-            
-            // 2. 徹底殺死觸發器，並傳入 true 要求還原所有 inline 樣式 (清除留白)
-            self.kill(true); 
-            
-            // 3. 確保白色層徹底消失
-            gsap.set("#kv .overlay", { autoAlpha: 0, display: "none" });
+        scrollTrigger: {
+            trigger: "#kv",
+            start: "top top",
+            end: "+=150%",
+            scrub: 1,
+            pin: true,
+            pinSpacing: true,
+            onLeave: (self) => {
+                // 1. 先抓到下一個區塊（也就是 Section 2）的元素
+                // 請將 "#section-2" 換成你實際的第二區 ID 或 Class
+                const nextSection = document.querySelector("#sec1"); 
 
-            // 4. 關鍵修正：使用 requestAnimationFrame 確保 DOM 已經重新排列
-            requestAnimationFrame(() => {
-                // 強制刷新所有 ScrollTrigger 的位置計算
+                // 2. 殺死觸發器並還原樣式
+                self.kill(true); 
+
+                // 3. 隱藏透明層
+                gsap.set("#kv .overlay", { autoAlpha: 0, display: "none" });
+
+                // 4. 強制重新計算位置
                 ScrollTrigger.refresh();
-                
-                // 將捲動軸精準定位在第一區的底部（也就是原本動畫結束的地方）
-                // 這樣就不會直接跳到第四區
-                window.scrollTo(0, endPos);
-            });
+
+                // 5. 使用 scrollIntoView 直接對齊，這是最保險的做法
+                if (nextSection) {
+                    nextSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
         }
-    }
     });
 
     // 定義動畫流程
