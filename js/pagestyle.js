@@ -40,39 +40,43 @@ $(document).ready( function() {
             pin: true,
             pinSpacing: true,
             onLeave: (self) => {
-                // 1. 先抓到下一個區塊（也就是 Section 2）的元素
-                // 請將 "#section-2" 換成你實際的第二區 ID 或 Class
-                const nextSection = document.querySelector("#sec1"); 
-
-                // 2. 殺死觸發器並還原樣式
-                self.kill(true); 
-
-                // 3. 隱藏透明層
+                // 1. 鎖定白色層狀態
                 gsap.set("#kv .overlay", { autoAlpha: 0, display: "none" });
 
-                // 4. 強制重新計算位置
-                ScrollTrigger.refresh();
+                // 2. 獲取當前滾動的絕對位置
+                const currentScroll = self.scroll();
+                // 獲取這段動畫撐開的總高度 (大約是 1.5 倍視窗高度)
+                const paddingAdded = self.end - self.start;
 
-                // 5. 使用 scrollIntoView 直接對齊，這是最保險的做法
-                if (nextSection) {
-                    nextSection.scrollIntoView({ behavior: 'smooth' });
-                }
+                // 3. 關鍵操作：我們不殺掉它，我們「完成」它
+                // 禁用觸發器，但保留所有樣式，避免高度塌陷導致「噴走」
+                self.disable(false);
+
+                // 4. 當使用者繼續往下划，人已經離開第一區很遠時（例如划了 200px）
+                // 我們再偷偷地把高度收起來並「瞬間位移」捲動軸
+                ScrollTrigger.create({
+                    trigger: "#sec1", // 監控第二區
+                    start: "top 20%", // 當第二區已經佔據大部分螢幕時
+                    once: true,
+                    onEnter: () => {
+                        // 這時候人已經看著第二區了，悄悄把 KV 的 spacer 拔掉
+                        self.kill(true); 
+                        gsap.set("#kv .overlay", { autoAlpha: 0, display: "none" });
+                        
+                        // 因為高度縮短了，我們要立刻補償捲動位移，讓使用者感覺不到變化
+                        const newPos = window.scrollY - paddingAdded;
+                        window.scrollTo(0, newPos);
+                        
+                        ScrollTrigger.refresh();
+                    }
+                });
             }
         }
     });
 
-    // 定義動畫流程
-    tl.fromTo("#kv .overlay", 
-        { autoAlpha: 0 }, 
-        { autoAlpha: 1, duration: 1 } // 第一步：淡入白色層
-    )
-    .to("#kv .overlay", { 
-        duration: 1 // 第二步：單純停留（這段時間畫面上文字不動）
-    })
-    .to("#kv .overlay", { 
-        autoAlpha: 0, 
-        duration: 1 // 第三步：淡出
-    });
+    tl.fromTo("#kv .overlay", { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 })
+    .to("#kv .overlay", { duration: 1 })
+    .to("#kv .overlay", { autoAlpha: 0, duration: 1 });
 
     // 物件淡入組合
     const animateTargets = [
@@ -86,7 +90,7 @@ $(document).ready( function() {
     gsap.to(target, {
         scrollTrigger: {
         trigger: target,   // 以物件本身作為觸發點更精準
-        start: "top 70%",
+        start: "top 20%",
         once: true,
         markers: false,
         },
